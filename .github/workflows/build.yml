@@ -1,0 +1,29 @@
+name: 'Terraform build'
+on:
+  push:
+      branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      - name: Terraform plan
+        id: plan
+        run: terraform plan
+        env:
+          TF_VAR_digitalocean_token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          TF_VAR_github_token: ${{ secrets.TOKEN }}
+          TF_VAR_github_owner: ${{ secrets.USER }}
+          TF_VAR_github_organization: ${{ secrets.ORGANIZATION }}
