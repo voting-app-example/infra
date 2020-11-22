@@ -79,10 +79,5 @@ resource "digitalocean_loadbalancer" "loadbalancer" {
     target_protocol = "http"
   }
 
-  healthcheck {
-    port     = 5001
-    protocol = "http"
-  }
-
   droplet_tag = var.cluster_nodes_name
 }
