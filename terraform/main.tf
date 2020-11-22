@@ -69,6 +69,7 @@ resource "digitalocean_loadbalancer" "loadbalancer" {
   healthcheck {
     port     = 5000
     protocol = "http"
+    path     = "/"
   }
 
   forwarding_rule {
