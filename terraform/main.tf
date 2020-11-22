@@ -68,7 +68,7 @@ resource "digitalocean_loadbalancer" "loadbalancer" {
 
   healthcheck {
     port     = 5000
-    protocol = "tcp"
+    protocol = "http"
   }
 
   forwarding_rule {
@@ -81,7 +81,7 @@ resource "digitalocean_loadbalancer" "loadbalancer" {
 
   healthcheck {
     port     = 5001
-    protocol = "tcp"
+    protocol = "http"
   }
 
   droplet_tag = var.cluster_nodes_name
