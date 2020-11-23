@@ -25,15 +25,10 @@ resource "local_file" "kubernetes_config" {
   filename = "${var.kubeconfig_name}.yml"
 }
 
-# Container Registry
-
-resource "digitalocean_container_registry" "registry" {
-  name                   = "voting-app-example"
-  subscription_tier_slug = "basic"
-}
+# Container Registry kubernetes setup
 
 resource "digitalocean_container_registry_docker_credentials" "registry_credentials" {
-  registry_name = "voting-app-example"
+  registry_name = var.registry_name
 
   depends_on = [digitalocean_container_registry.registry]
 }
