@@ -29,8 +29,6 @@ resource "local_file" "kubernetes_config" {
 
 resource "digitalocean_container_registry_docker_credentials" "registry_credentials" {
   registry_name = var.registry_name
-
-  depends_on = [digitalocean_container_registry.registry]
 }
 
 resource "kubernetes_secret" "registry_credentials_secret" {
