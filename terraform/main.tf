@@ -52,24 +52,24 @@ resource "digitalocean_loadbalancer" "loadbalancer" {
   region = "nyc1"
 
   forwarding_rule {
-    entry_port     = 5000
-    entry_protocol = "tcp"
+    entry_port     = 5001
+    entry_protocol = "http"
 
-    target_port     = 5000
-    target_protocol = "tcp"
+    target_port     = 31001
+    target_protocol = "http"
   }
 
   healthcheck {
-    port     = 5000
+    port     = 31001
     protocol = "tcp"
   }
 
   forwarding_rule {
-    entry_port     = 5001
-    entry_protocol = "tcp"
+    entry_port     = 5000
+    entry_protocol = "http"
 
-    target_port     = 5001
-    target_protocol = "tcp"
+    target_port     = 31000
+    target_protocol = "http"
   }
 
   droplet_tag = var.cluster_nodes_name
