@@ -33,7 +33,7 @@ resource "digitalocean_container_registry_docker_credentials" "registry_credenti
 
 resource "kubernetes_secret" "registry_credentials_secret" {
   metadata {
-    name = "voting-app-example-do-registry"
+    name      = "voting-app-example-do-registry"
     namespace = "vote"
   }
 
